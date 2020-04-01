@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Sabo/Sabo-Filled.otf" type="DynamicFontData" id=1]
+
+[resource]
+size = 9
+outline_size = 1
+outline_color = Color( 0.184314, 0.388235, 0.517647, 0.513726 )
+use_filter = true
+font_data = ExtResource( 1 )
