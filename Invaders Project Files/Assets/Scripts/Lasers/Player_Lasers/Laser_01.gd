@@ -22,19 +22,19 @@ func _entered(area):
 	if area.is_in_group("enemy"):
 		
 		## check if enemy has variable health
-		if area.get("health"):
+		if area.get_parent().get("health"):
 			
 			## if health is greater then 1
-			if area.health > 1:
+			if area.get_parent().health > 1:
 				
 				## subtract health by 1 point
-				area.health -= 1
+				area.get_parent().health -= 1
 				
 			## if health is less then 1
 			else:
 				
 				## set health to 0
-				area.health = 0
+				area.get_parent().health = 0
 				
 				## remove enemy (area2d was inside enemy sprite)
 				area.get_parent().queue_free()
