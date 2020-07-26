@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/Enemies/Alien_03/Alien_03_f1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Enemies/Alien_03/Alien_03_f2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Scripts/Enemies/Enemy_01.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.99087, 5.49758 )
+
+[node name="Enemy" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 6 )
+health = 3
+score = 10
+character_sprite_list = [ ExtResource( 1 ), ExtResource( 2 ) ]
+explosion_sprite_list = [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"enemy",
+]]
+position = Vector2( 0, -0.524091 )
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
