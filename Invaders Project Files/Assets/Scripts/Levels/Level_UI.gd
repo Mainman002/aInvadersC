@@ -7,7 +7,7 @@ func _ready():
 	_update_label($UI_VB/Score_HB/Score, "Score", Globals.Score, 5)
 	_update_label($UI_VB/Lives_HB/Lives, "Lives", Globals.Lives, 2)
 
-func _process(delta):
+func _process(_delta):
 	
 	## set our HighScore value if Score is greater then HighScore
 	if Globals.Score > Globals.Highscore:
@@ -19,7 +19,9 @@ func _process(delta):
 	## update other labels
 	_update_label($UI_VB/Score_HB/Score, "Score", Globals.Score, 5)
 	_update_label($UI_VB/Extras_HB/Aliens, "Aliens", Globals.Aliens, 3)
-	_update_label($UI_VB/Lives_HB/Lives, "Lives", Globals.Lives, 2)
+	
+	if Globals.Lives >= 0:
+		_update_label($UI_VB/Lives_HB/Lives, "Lives", Globals.Lives, 2)
 
 func _update_label(_node, _name, _value, _padding):
 	

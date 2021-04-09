@@ -124,15 +124,16 @@ func _process(delta):
 	
 	## if player is alive
 	if Globals.Player_Alive:
-		if Globals.Lives > 0:
-			if shoot_delay > 0:
-				shoot_delay -= shoot_rate
-			else:
-				shoot_delay = shoot_reset
-				
-				for alien in get_child_count():
-					random_alien = round(rand_range(0, alien))
-				_shoot_laser(random_alien)
+		if shoot_delay > 0:
+			shoot_delay -= shoot_rate
+		else:
+			shoot_delay = shoot_reset
+			
+			for alien_id in get_children():
+				if alien_id.alive:
+					for alien in get_child_count():
+						random_alien = round(rand_range(0, alien))
+			_shoot_laser(random_alien)
 	
 	## if player is not alive
 	else:

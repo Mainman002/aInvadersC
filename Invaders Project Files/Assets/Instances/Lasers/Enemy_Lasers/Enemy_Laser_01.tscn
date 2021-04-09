@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Sprites/Lasers/Laser1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Scripts/Lasers/Enemy_Lasers/Enemy_Laser_01.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f3.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Instances/Controllers/AnimationController.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.0199, 3.00086 )
@@ -22,3 +23,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="AnimationController" parent="." instance=ExtResource( 6 )]
+Death_Type = "Laser"
