@@ -6,10 +6,6 @@ export (int) var health = 1
 ## score
 export (int) var score = 1
 
-## texture lists
-#export(Array, Texture) var character_sprite_list
-export(Array, Texture) var explosion_sprite_list
-
 enum {
 	MOVE_DOWN,
 	MOVE_LEFT,
@@ -23,12 +19,6 @@ var shield_list = []
 var alive = true
 var temp_death_state = false
 
-## animation
-var current_sprite = 0
-var current_fps = 0
-var fps_delay = 5
-var fps_rate = 0.1
-
 func _ready():
 	
 # warning-ignore:return_value_discarded
@@ -41,9 +31,6 @@ func _process(_delta):
 	
 	## if enemy is alive
 	if alive:
-	
-		## change the animation based on character sprite list
-#		_animate(character_sprite_list)
 		
 		## check if the enemy isn't already the shield color
 		if self_modulate != shield_list[health-1]:

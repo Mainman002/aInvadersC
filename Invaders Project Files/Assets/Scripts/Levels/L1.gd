@@ -12,5 +12,5 @@ func _input(_event):
 			_ChangeScene(SceneDir, Level)
 		
 func _ChangeScene(_d, _s):
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(load(str("res://Assets/Scenes/", _d, "/", _s, ".tscn")))

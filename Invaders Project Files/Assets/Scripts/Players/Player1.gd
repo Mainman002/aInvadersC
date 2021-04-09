@@ -30,16 +30,10 @@ onready var shoot_cooldown = SHOOT_DELAY
 ## laser scene file
 onready var laser_01 = preload("res://Assets/Instances/Lasers/Player_Lasers/Laser_01.tscn")
 
-func _ready():
-# warning-ignore:return_value_discarded
-	$Area2D.connect("area_entered", self, "_colliding")
-# warning-ignore:return_value_discarded
-	$Area2D.connect("area_exited", self, "_not_colliding")
 
 func _physics_process(delta):
-	
 	if alive:
-	
+		
 		## Move with mouse cursor position
 		if Globals.player_control == "MOUSE":
 			
@@ -77,12 +71,14 @@ func _physics_process(delta):
 	
 			## move left state
 			MOVE_LEFT:
-				if wall_colliding != "LEFT":
+#				if wall_colliding != "LEFT":
+				if position.x > texture.get_width()/float(2):
 					position.x -= SPEED * delta
 				
 			## move right state
 			MOVE_RIGHT:
-				if wall_colliding != "RIGHT":
+#				if wall_colliding != "RIGHT":
+				if position.x < get_viewport_rect().size.x - texture.get_width()/float(2):
 					position.x += SPEED * delta
 	
 		## if shoot cooldown is greater then 0 subtract by an amount
@@ -117,20 +113,3 @@ func _physics_process(delta):
 			if has_node("AnimationController"):
 				$AnimationController._dead()
 
-
-## check for collisions
-func _colliding(area):
-	
-	## entered left area bounds
-	if area.is_in_group("left"):
-		wall_colliding = "LEFT"
-		
-	## exited left area bounds
-	elif area.is_in_group("right"):
-		wall_colliding = "RIGHT"
-
-## check for exited collisions
-func _not_colliding(_area):
-	
-	## exited left and right area bounds
-	wall_colliding = "NONE"
