@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Sprites/Barriers/Barriers_01.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Effects/Explosion_01/Explosion_01_f3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Scripts/Barriers/Barrier_01.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="Sprite" type="Sprite"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 8, 0, 8, 8 )
+script = ExtResource( 5 )
+explosion_sprite_list = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
