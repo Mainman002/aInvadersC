@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Assets/Instances/Players/Player1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Scripts/Players/Player1.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Players/Player1/Player1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Scripts/Players/Player_Spawner.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Scripts/Levels/L1.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/TileMaps/Alien_Tiles.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Instances/Enemies/Enemy_01.tscn" type="PackedScene" id=5]
@@ -9,6 +9,10 @@
 [ext_resource path="res://Assets/Instances/Enemies/Enemy_02.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Instances/Enemies/Enemy_04.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Instances/Enemies/Enemy_03.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Fonts/Sabo/MainmenuFont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Assets/Scripts/Levels/Level_UI.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Instances/Players/Player1.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Instances/Lasers/Enemy_Lasers/Enemy_Laser_01.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 118.185 )
@@ -54,10 +58,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 125.659, 214 )
-script = ExtResource( 2 )
-
 [node name="Border_Left" type="Area2D" parent="." groups=[
 "border",
 "left",
@@ -99,9 +99,12 @@ shape = SubResource( 2 )
 
 [node name="Lasers" type="Node2D" parent="."]
 
+[node name="Enemy_Lasers" type="Node2D" parent="."]
+
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 6 )
 enemy_list = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 8 ) ]
+laser = ExtResource( 13 )
 shield_color_list = [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0.796078, 0, 1 ), Color( 0.313726, 1, 0, 1 ), Color( 0, 1, 0.905882, 1 ), Color( 0, 0.0627451, 1, 1 ), Color( 0.921569, 0, 1, 1 ) ]
 
 [node name="Enemy_TileMap" type="TileMap" parent="Enemies"]
@@ -109,3 +112,91 @@ tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 327684, 0, 0, 327685, 0, 1, 327686, 0, 2, 327687, 0, 3 )
+
+[node name="UI_MC" type="MarginContainer" parent="."]
+margin_right = 255.0
+margin_bottom = 223.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 5
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 5
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI_VB" type="VBoxContainer" parent="UI_MC"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 247.0
+margin_bottom = 218.0
+
+[node name="Extras_HB" type="HBoxContainer" parent="UI_MC/UI_VB"]
+margin_right = 239.0
+margin_bottom = 12.0
+alignment = 1
+
+[node name="Aliens" type="Label" parent="UI_MC/UI_VB/Extras_HB"]
+margin_left = 88.0
+margin_right = 150.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 10 )
+text = "Aliens: 000"
+
+[node name="Score_HB" type="HBoxContainer" parent="UI_MC/UI_VB"]
+margin_top = 16.0
+margin_right = 239.0
+margin_bottom = 28.0
+
+[node name="Score" type="Label" parent="UI_MC/UI_VB/Score_HB"]
+margin_right = 72.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 10 )
+text = "Score: 00000"
+
+[node name="HSeparator" type="HSeparator" parent="UI_MC/UI_VB/Score_HB"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 76.0
+margin_right = 139.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+
+[node name="HighScore" type="Label" parent="UI_MC/UI_VB/Score_HB"]
+margin_left = 143.0
+margin_right = 239.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 10 )
+text = "Highscore: 00000"
+
+[node name="VSeparator" type="VSeparator" parent="UI_MC/UI_VB"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 32.0
+margin_right = 239.0
+margin_bottom = 197.0
+size_flags_vertical = 3
+
+[node name="Lives_HB" type="HBoxContainer" parent="UI_MC/UI_VB"]
+margin_top = 201.0
+margin_right = 239.0
+margin_bottom = 213.0
+
+[node name="Lives" type="Label" parent="UI_MC/UI_VB/Lives_HB"]
+margin_right = 49.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 10 )
+text = "Lives: 00"
+
+[node name="HSeparator" type="HSeparator" parent="UI_MC/UI_VB/Lives_HB"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 53.0
+margin_right = 239.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+
+[node name="Player_Spawner" type="Position2D" parent="."]
+position = Vector2( 128, 214 )
+script = ExtResource( 2 )
+player = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Player_Spawner"]
+texture = ExtResource( 1 )

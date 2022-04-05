@@ -25,6 +25,10 @@ func _process(_delta):
 		## reset the score variable so that it doesn't keep increasing with each game over
 		Globals.Score = 00000
 		
+		Globals.Lives = Globals.Start_Lives
+		
+		Globals.Aliens = 0
+		
 		if SceneDir == "Menus":
 			_ChangeScene(SceneDir, Scene)
 		elif SceneDir == "Levels":

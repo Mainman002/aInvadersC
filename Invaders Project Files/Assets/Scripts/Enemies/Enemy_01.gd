@@ -100,6 +100,8 @@ func _animate(_sprite):
 # warning-ignore:return_value_discarded
 					get_tree().change_scene_to(load(str("res://Assets/Scenes/Menus/GameOver.tscn")))
 					
+				Globals.Aliens -= 1
+					
 				queue_free()
 	
 		## check if sprite list is not empty
