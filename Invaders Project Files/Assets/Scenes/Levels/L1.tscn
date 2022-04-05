@@ -111,7 +111,7 @@ shield_color_list = [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0.7960
 tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327684, 0, 0, 327685, 0, 1, 327686, 0, 2, 327687, 0, 3 )
+tile_data = PoolIntArray( 327684, 0, 0, 327685, 0, 1, 327686, 0, 2, 327687, 0, 3, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0 )
 
 [node name="UI_MC" type="MarginContainer" parent="."]
 margin_right = 255.0

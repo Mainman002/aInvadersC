@@ -72,11 +72,6 @@ func _animate(_sprite):
 				current_sprite = 0
 			else:
 				
-				## if this is the last enemy go to the GameOver menu
-				if get_parent().get_child_count() < 2:
-# warning-ignore:return_value_discarded
-					get_tree().change_scene_to(load(str("res://Assets/Scenes/Menus/GameOver.tscn")))
-					
 				queue_free()
 	
 		## check if sprite list is not empty
@@ -87,10 +82,10 @@ func _animate(_sprite):
 
 func _entered(area):
 	
-	## check if laser collided with enemy
+	## check if laser collided with player
 	if area.is_in_group("player"):
 		
-		## check if enemy has variable health
+		## check if player has variable health
 		if Globals.Lives > 0:
 			
 			## if health is greater then 1
@@ -103,13 +98,13 @@ func _entered(area):
 				
 				Globals.Lives = 0
 				
-			## remove enemy (area2d was inside enemy sprite)
+			## remove laser (area2d was inside player sprite)
 			area.get_parent().alive = false
 			area.get_parent().temp_death_state = true
 			
 			Globals.Player_Alive = false
-			
-			
-			## remove player laser
+				
+				
+			## remove enemy laser
 			queue_free()
 
